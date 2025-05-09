@@ -4,3 +4,7 @@ pandas
 scikit-learn
 nltk
 joblib
+wordcloud
+matplotlib
+pillow
+numpy
