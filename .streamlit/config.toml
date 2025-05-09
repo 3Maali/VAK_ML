@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#007BFF"  # Vibrant blue for buttons and highlights
+backgroundColor = "#FFFFFF"  # White for content areas (overridden by gradient in CSS)
+secondaryBackgroundColor = "#F8F9FA"  # Light gray for sidebar
+textColor = "#212529"  # Dark gray for text
+font = "sans serif"
