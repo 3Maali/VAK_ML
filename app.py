@@ -342,7 +342,7 @@ st.markdown("""
 st.markdown("<h1>VAK Learning Style Classifier</h1>", unsafe_allow_html=True)
 st.markdown("<h3>Visual, Auditory, Kinesthetic</h3>", unsafe_allow_html=True)
 
-st.image("/home/maali/code/3Maali/VAK_ML/VAK-removebg.png", caption="Explore Your Learning Style with VAK", use_container_width=True)
+st.image("image/VAK-removebg.png", caption="Explore Your Learning Style with VAK", use_container_width=True)
 
 # Sidebar
 st.sidebar.markdown("### Get Sentence Suggestions")
