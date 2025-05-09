@@ -1,6 +1,6 @@
 # VAK Learning Style Classifier
 
-![VAK Logo](VAK-removebg.png)
+![VAK Logo](image/VAK-removebg.png)
 
 **VAK Learning Style Classifier** is an interactive web application that predicts a user's learning style—Visual, Auditory, or Kinesthetic—based on sentences describing their learning preferences. Built with Streamlit and powered by a machine learning model, this app helps users discover their dominant learning style and provides tailored tips to enhance their learning experience.
 
@@ -27,17 +27,6 @@ This project uses a **Logistic Regression** model trained on a dataset of labele
 
 ---
 
-## 🎥 Demo
-
-Visit the live app: [VAK Learning Style Classifier](https://3maali-w5cunvfrkzykedebxtpsyz.streamlit.app/)
-
-Here’s a quick look at the app’s interface:
-
-![App Screenshot](screenshot.png)
-
-*(Replace `screenshot.png` with an actual screenshot of your app for better visuals.)*
-
----
 
 ## 🛠️ Technologies Used
 
