@@ -7,7 +7,7 @@ Interactive web app to predict your learning style (Visual, Auditory, Kinestheti
 Live Demo: [VAK Learning Style Classifier](https://3maali-w5cunvfrkzykedebxtpsyz.streamlit.app/)
 
 ## About
-Predicts learning style from sentences using a Logistic Regression model (95.15% accuracy). Features include:
+Predicts learning style from sentences using an **XGBoost model with BERT embeddings** (70.20% accuracy). Features include:
 - Predict dominant learning style
 - Confidence scores
 - Word cloud visualization
@@ -16,15 +16,17 @@ Predicts learning style from sentences using a Logistic Regression model (95.15%
 - Model details
 
 ## Technologies
-- Python 3.8+
+- Python 3.10+
 - Streamlit
 - NLTK
 - scikit-learn
+- transformers (BERT)
+- torch (PyTorch)
+- xgboost
 - WordCloud, Matplotlib
 - Joblib
 - Pillow
 
----
 ---
 ## How to Use
 1. Visit [live app](https://3maali-w5cunvfrkzykedebxtpsyz.streamlit.app/)
@@ -38,11 +40,17 @@ Predicts learning style from sentences using a Logistic Regression model (95.15%
 - "I enjoy hands-on activities and experiments." (Kinesthetic)
 
 ## Model
-- **Type**: Logistic Regression
+- **Type**: XGBoost with BERT embeddings
 - **Data**: Labeled sentences (`dataset.csv`)
-- **Preprocessing**: Lowercase, remove punctuation, stopwords, lemmatize (NLTK)
-- **Features**: TF-IDF Vectorizer (1000 features)
-- **Accuracy**: 95.15% (3090 test samples)
+- **Preprocessing**:
+  - Lowercase, remove punctuation, stopwords (NLTK)
+  - Custom stopwords removal (e.g., 'learn', 'understand', 'better')
+  - BERT embeddings (`bert-base-uncased`, 768-dimensional vectors)
+- **Training**:
+  - Balanced dataset using resampling
+  - 80/20 train-test split with stratification
+  - XGBoost with 200 estimators
+- **Accuracy**: 70.20% (2883 test samples)
 
 ## Setup
 1. Clone repo: `git clone https://github.com/your-username/vak-learning-style-classifier.git`
@@ -51,4 +59,4 @@ Predicts learning style from sentences using a Logistic Regression model (95.15%
 4. Download NLTK data:
    ```python
    import nltk
-   nltk.download(['punkt', 'stopwords', 'wordnet', 'punkt_tab'])
+   nltk.download(['punkt', 'stopwords', 'punkt_tab'])
