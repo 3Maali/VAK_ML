@@ -11,12 +11,12 @@ import os
 from transformers import BertTokenizer, BertModel
 import torch
 
-# تنزيل موارد NLTK
+
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('punkt_tab')
 
-# تهيئة الكلمات المتوقفة
+
 stop_words = set(stopwords.words('english'))
 custom_stop_words = stop_words.union({
     'learn', 'learning', 'understand', 'understanding', 'better', 'best',
@@ -24,7 +24,7 @@ custom_stop_words = stop_words.union({
     'make', 'need', 'want', 'use', 'way', 'good', 'great'
 })
 
-# دالة المعالجة المسبقة
+
 def preprocess_text(text):
     text = text.lower()
     text = text.translate(str.maketrans('', '', string.punctuation))
@@ -32,25 +32,25 @@ def preprocess_text(text):
     words = [word for word in words if word not in custom_stop_words]
     return ' '.join(words)
 
-# تهيئة BERT
+
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 bert_model = BertModel.from_pretrained('bert-base-uncased')
 
-# دالة للحصول على تضمينات BERT
+
 def get_bert_embedding(text):
     inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=128)
     with torch.no_grad():
         outputs = bert_model(**inputs)
     return outputs.last_hidden_state.mean(dim=1).squeeze().numpy()
 
-# تحميل النموذج الجديد
+
 model = joblib.load('xgb_bert_model.pkl')
 label_encoder = joblib.load('label_encoder.pkl')
 
-# دقة النموذج المحدثة
-MODEL_ACCURACY = 0.7020  # الدقة الجديدة
 
-# جمل مساعدة لكل نمط
+MODEL_ACCURACY = 0.7020
+
+
 helper_sentences = {
     "Visual": [
         "I learn best by watching videos and diagrams.",
@@ -75,7 +75,7 @@ helper_sentences = {
     ]
 }
 
-# CSS لتنسيق الواجهة
+
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&display=swap');
@@ -349,13 +349,13 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# العنوان الرئيسي
+
 st.markdown("<h1>VAK Learning Style Classifier</h1>", unsafe_allow_html=True)
 st.markdown("<h3>Visual, Auditory, Kinesthetic</h3>", unsafe_allow_html=True)
 
 st.image("image/VAK-removebg.png", caption="Explore Your Learning Style with VAK", use_container_width=True)
 
-# الشريط الجانبي
+
 st.sidebar.markdown("### Get Sentence Suggestions")
 st.sidebar.write("Click a button to get a sample sentence for a learning style:")
 
@@ -378,7 +378,7 @@ if st.sidebar.button("Kinesthetic"):
     st.session_state.kinesthetic_index = (st.session_state.kinesthetic_index + 1) % len(helper_sentences["Kinesthetic"])
     st.sidebar.write(f"**Suggested Sentence**: {helper_sentences['Kinesthetic'][st.session_state.kinesthetic_index]}")
 
-# إعداد علامات التبويب
+
 with st.container():
     st.markdown('<div class="nav-bar">', unsafe_allow_html=True)
     tabs = st.tabs(["Predict Learning Style", "Model Details"])
@@ -422,7 +422,7 @@ with tabs[0]:
 
     if predict_button:
         if user_input:
-            # تقسيم المدخل إلى جمل
+
             sentences = [s.strip() for s in user_input.split('\n') if s.strip()]
             if not sentences:
                 st.error("Please enter at least one valid sentence.")
@@ -434,13 +434,13 @@ with tabs[0]:
                         st.warning(f"Sentence '{sentence}' is too short (minimum 3 words). Skipping.")
                         continue
 
-                    # معالجة الجملة
+
                     processed_text = preprocess_text(sentence)
 
-                    # الحصول على تضمينات BERT
+
                     text_vector = get_bert_embedding(processed_text)
 
-                    # التنبؤ واحتمالات التصنيف
+
                     prediction = model.predict([text_vector])
                     predicted_style = label_encoder.inverse_transform(prediction)[0]
                     probabilities = model.predict_proba([text_vector])[0]
@@ -459,7 +459,7 @@ with tabs[0]:
                         for style, prob in prob_dict.items():
                             st.markdown(f'<p class="confidence-text">{style}: {prob:.2%}</p>', unsafe_allow_html=True)
 
-                        # عرض Word Cloud
+
                         processed_text_all = ' '.join([preprocess_text(sentence) for sentence in sentences])
                         wordcloud = WordCloud(width=800, height=400,
                                               background_color='white',
