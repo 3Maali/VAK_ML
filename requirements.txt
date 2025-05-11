@@ -8,3 +8,7 @@ wordcloud
 matplotlib
 pillow
 numpy
+transformers
+torch
+xgboost
+seaborn

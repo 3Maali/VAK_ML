@@ -391,7 +391,7 @@ with tabs[0]:
     st.markdown(f'<div class="learning-tips"> {about}</div>', unsafe_allow_html=True)
 
     examples = [
-        "- I learn best by watching videos and diagrams.",
+        "- I watch videos and diagrams to understand.",
         "- I prefer listening to lectures or podcasts. ",
         "- I understand concepts better when I see charts. ",
         "- I like to move around while studying.",
