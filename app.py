@@ -387,7 +387,7 @@ with st.container():
 # Tab 1: Predict Learning Style
 with tabs[0]:
     st.header("Predict Learning Style")
-    about = f"The VAK model categorizes learning styles into Visual (learning by seeing), Auditory (learning by hearing), and Kinesthetic (learning by doing) based on a sentence you provide. This app uses a machine learning model trained on labeled sentences with an accuracy of {MODEL_ACCURACY:.2%} on test data."
+    about = f"The VAK model categorizes learning styles into Visual (learning by seeing), Auditory (learning by hearing), and Kinesthetic (learning by doing) based on a sentence you provide. This app uses a machine learning model trained on labeled sentences "
     st.markdown(f'<div class="learning-tips"> {about}</div>', unsafe_allow_html=True)
 
     examples = [

@@ -1,12 +1,18 @@
-pandas
+
+
+# Core requirements
+streamlit
 nltk
 numpy
+joblib
+wordcloud
+matplotlib
+
+# Machine learning and NLP dependencies
 transformers
 torch
-scikit-learn
 xgboost
-joblib
-seaborn
-matplotlib
-wordcloud
-streamlit
+scikit-learn
+
+# Image handling
+Pillow
